@@ -10,6 +10,11 @@ public class IDLE extends PlayerStatus{
 		// TODO Auto-generated constructor stub
 		
 	}
+	
+	public IDLE(int currentFrameNumber) {
+		Player.currentFrameNumber = currentFrameNumber;
+		FrameCounter = currentFrameNumber * 6;
+	}
 
 	@Override
 	public void act() {
@@ -25,7 +30,11 @@ public class IDLE extends PlayerStatus{
 			return Images.Player[1][Player.currentFrameNumber];
 		}
 	}
-
+	
+	public void setDelay(int delay) {
+		return;
+	}
+	
 	public void setFrameCounter(int num) {
 		FrameCounter = num;
 	}

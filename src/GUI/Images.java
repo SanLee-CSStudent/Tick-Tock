@@ -37,6 +37,14 @@ public class Images {
 			}
 		}
 		
+		for(int i=0; i<PLAYER_MOVE_FRAMES; i++) {// loading Move Image looking to the right
+			Player[2][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//RunImage_Tictoc//run_L" + i + ".png"));
+		}
+		
+		for(int i=0; i<PLAYER_MOVE_FRAMES; i++) {// loading Move Image looking to the right
+			Player[3][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//RunImage_Tictoc//run_R" + i + ".png"));
+		}
+		
 	}
 	
 	private final int PLAYER_STATES = 2;

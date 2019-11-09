@@ -2,6 +2,8 @@ package States;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import GUI.GameFrame;
 import GUI.GamePanel;
@@ -18,20 +20,26 @@ public class MOVE extends PlayerStatus{
 	@Override
 	public void act() {
 		// TODO Auto-generated method stub
-		directNum = rand.nextInt(2);// 0, 1, 2
-		if(directNum == 0) {
-			Player.DIR = Direction.LEFT;
-			if(GamePanel.player.playerX >= 0) {
-				Player.DIR = Direction.LEFT;
+	
+		if(Player.DIR.equals(Direction.LEFT)) {
+
+			if(GamePanel.player.playerX <= 0) {
+				Player.DIR = Direction.RIGHT;
+				GamePanel.player.playerX += 3;
 			}
-			GamePanel.player.playerX -= 3;
+			else {
+				GamePanel.player.playerX -= 3;
+			}
 		}
-		else if(directNum == 1) {
-			Player.DIR = Direction.RIGHT;
-			if(GamePanel.player.playerX >= GameFrame.SCREEN_SIZE.width) {
+		else {
+
+			if(GamePanel.player.playerX >= GameFrame.SCREEN_SIZE.width - Images.PLAYER_WIDTH) {
 				Player.DIR = Direction.LEFT;
+				GamePanel.player.playerX -= 3;
 			}
-			GamePanel.player.playerX += 3;
+			else {
+				GamePanel.player.playerX += 3;
+			}
 		}
 		
 		FrameCounter++;
@@ -47,12 +55,15 @@ public class MOVE extends PlayerStatus{
 		}
 	}
 	
+	public void setDelay(int delay) {
+		this.delay = delay;
+	}
+	
 	public void setFrameCounter(int num) {
 		FrameCounter = num;
 	}
 	
 	public int getFrameCounter() {
-
 		return FrameCounter;
 	}
 	
@@ -63,5 +74,6 @@ public class MOVE extends PlayerStatus{
 	public final int AnimationFrames = Images.PLAYER_MOVE_FRAMES;
 	private int FrameCounter = 0;
 	private int directNum;
+	private int delay = 0;
 	private Random rand = new Random();
 }
