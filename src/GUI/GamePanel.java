@@ -33,6 +33,8 @@ public class GamePanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		
+		g2.drawImage(player.getFrame(), player.playerX, player.playerY, null);
 	}
 	
 	public static Player player;

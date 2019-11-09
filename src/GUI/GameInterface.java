@@ -1,7 +1,5 @@
 package GUI;
 
-import GameObject.Player;
-
 public class GameInterface extends Thread{
 
 	public GameInterface(GamePanel gamePanel) {

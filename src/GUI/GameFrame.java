@@ -22,6 +22,7 @@ public class GameFrame extends JFrame{
 		this.requestFocusInWindow(true);
 		this.setUndecorated(true);
 		
+		loadImage = new Images();
 		gamePanel = new GamePanel();
 		gameInterface = new GameInterface(gamePanel);
 		gameInterface.start();
@@ -40,6 +41,7 @@ public class GameFrame extends JFrame{
 	
 	GamePanel gamePanel;
 	GameInterface gameInterface;
+	Images loadImage;
 	
 	public static Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 }
