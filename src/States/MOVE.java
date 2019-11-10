@@ -1,9 +1,6 @@
 package States;
 
 import java.awt.image.BufferedImage;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import GUI.GameFrame;
 import GUI.GamePanel;
@@ -55,10 +52,6 @@ public class MOVE extends PlayerStatus{
 		}
 	}
 	
-	public void setDelay(int delay) {
-		this.delay = delay;
-	}
-	
 	public void setFrameCounter(int num) {
 		FrameCounter = num;
 	}
@@ -73,7 +66,4 @@ public class MOVE extends PlayerStatus{
 	
 	public final int AnimationFrames = Images.PLAYER_MOVE_FRAMES;
 	private int FrameCounter = 0;
-	private int directNum;
-	private int delay = 0;
-	private Random rand = new Random();
 }

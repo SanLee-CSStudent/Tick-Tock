@@ -15,8 +15,6 @@ public abstract class PlayerStatus {
 	
 	abstract public int getAnimationFrames();
 	
-	abstract public void setDelay(int delay);
-	
 	public abstract void act();
 	public abstract BufferedImage getCurrentFrame();
 	protected final int AnimationFrames = 5;

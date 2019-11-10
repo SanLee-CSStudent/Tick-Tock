@@ -1,19 +1,14 @@
 package States;
+
 import java.awt.image.BufferedImage;
 
 import GUI.Images;
 import GameObject.Player;
 
-public class IDLE extends PlayerStatus{
+public class SIT extends PlayerStatus{
 
-	public IDLE() {
+	public SIT() {
 		// TODO Auto-generated constructor stub
-		
-	}
-	
-	public IDLE(int currentFrameNumber) {
-		Player.currentFrameNumber = currentFrameNumber;
-		FrameCounter = currentFrameNumber * 6;
 	}
 
 	@Override
@@ -24,10 +19,10 @@ public class IDLE extends PlayerStatus{
 	
 	public BufferedImage getCurrentFrame() {
 		if(Player.DIR.equals(Direction.LEFT)) {
-			return Images.Player[0][Player.currentFrameNumber];
+			return Images.Player[4][Player.currentFrameNumber];
 		}
 		else {
-			return Images.Player[1][Player.currentFrameNumber];
+			return Images.Player[5][Player.currentFrameNumber];
 		}
 	}
 	
@@ -43,6 +38,7 @@ public class IDLE extends PlayerStatus{
 		return AnimationFrames;
 	}
 	
-	private final int AnimationFrames = Images.PLAYER_IDLE_FRAMES;
+	private final int AnimationFrames = Images.PLAYER_SIT_FRAMES;
 	private int FrameCounter = 0;
+
 }

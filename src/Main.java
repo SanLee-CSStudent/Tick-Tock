@@ -10,7 +10,6 @@ public class Main {
 		// System.out.println("main()");
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				
 				@SuppressWarnings("unused")
 				GameFrame gameFrame = new GameFrame();
 				

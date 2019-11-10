@@ -1,5 +1,11 @@
 package GameObject;
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.util.Timer;
@@ -7,11 +13,13 @@ import java.util.TimerTask;
 
 import javax.swing.JComponent;
 import Interface.AnimatedObject;
+import Interface.MouseResponse;
 import States.*;
 import GUI.GameFrame;
 import GUI.Images;
+import GUI.ManageHeart;
 
-public class Player extends JComponent implements AnimatedObject{
+public class Player extends JComponent implements AnimatedObject, MouseResponse{
 
 	/**
 	 * 
@@ -22,7 +30,13 @@ public class Player extends JComponent implements AnimatedObject{
 		playerX = (int)GameFrame.SCREEN_SIZE.getWidth() - Images.PLAYER_WIDTH;
 		playerY = (int)GameFrame.SCREEN_SIZE.getHeight() - Images.PLAYER_HEIGHT - OFFSET_Y;
 		actTimer = new Timer();
+		hearts = new ManageHeart();
 		delayNum = 1000;
+		hitbox = new Rectangle(Images.PLAYER_WIDTH, Images.PLAYER_HEIGHT, playerX, playerY);
+		
+		this.setLocation(new Point(playerX, playerY));
+		this.setSize(new Dimension(Images.PLAYER_WIDTH, Images.PLAYER_HEIGHT));
+		this.setBounds(hitbox);
 		
 		frame = Images.Player[0][0];
 		currentFrameNumber = 0;
@@ -32,12 +46,27 @@ public class Player extends JComponent implements AnimatedObject{
 		if(delayNum <= 0) {
 			System.out.println(delayNum);
 		}
+		
+		addMouseResponse();
 
+		resumeAct();
+	}
+	public void live() {
+		setAnimation();
+		
+		delayNum = rand.nextInt(3000) + 1000;
+
+		PS.act();
+	}
+	
+	private void resumeAct() {
+		actTimer = new Timer();
 		actTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				// System.out.println(delayNum);
+				
 				actionNum = rand.nextInt(3);
 				if(actionNum == 0) {
 					PS = new IDLE(idleFrameCache);
@@ -52,19 +81,15 @@ public class Player extends JComponent implements AnimatedObject{
 						DIR = Direction.RIGHT;
 					}
 				}
-				
-				
 			}
 			
 		}, delayNum, delayNum);
-
 	}
-	public void live() {
-		setAnimation();
-		
-		delayNum = rand.nextInt(3000) + 1000;
 
-		PS.act();
+	
+	public void pause(Timer t) {
+		t.cancel();
+		t.purge();
 	}
 	
 	@Override
@@ -79,7 +104,6 @@ public class Player extends JComponent implements AnimatedObject{
 	public void animateFrame() {
 		// TODO Auto-generated method stub
 		// System.out.println(currentFrameNumber);
-		
 		currentFrameNumber = PS.getFrameCounter() / FPS;
 		currentFrameNumber %= PS.getAnimationFrames();
 		
@@ -100,6 +124,50 @@ public class Player extends JComponent implements AnimatedObject{
 		return frame;
 	}
 	
+	@Override
+	public void addMouseResponse() {
+		// TODO Auto-generated method stub
+		// System.out.println("MouseResponse");
+		Player pl = this;
+		this.setOpaque(true);
+		
+		this.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent l) {
+				GameFrame.cursor.setCursor1(pl);
+			}
+			public void mouseReleased(MouseEvent l) {
+				GameFrame.cursor.setCursor0(pl);
+				heartDelay = 0;
+			}
+			public void mouseClicked(MouseEvent l) {
+				//System.out.println(e.getX());
+				if(!sitting) {
+					PS = new SIT();// TICTOC is sitting
+					sitting = true;
+					pause(actTimer);
+				}
+				else {
+					PS = new IDLE();
+					resumeAct();
+					sitting = false;
+					
+				}
+			}
+		});
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent l) {
+				if(hearts.Hearts.size() < 8) {
+					heartDelay++;
+					if(heartDelay > MAX_HEART_DELAY) {
+						// System.out.println(hearts.Hearts.size());
+						hearts.addHeart();
+						heartDelay = 0;
+					}
+				}
+			}
+		});
+	}
+	
 	private BufferedImage frame;
 	public static int currentFrameNumber;
 	private int idleFrameCache = 0;
@@ -107,14 +175,24 @@ public class Player extends JComponent implements AnimatedObject{
 	
 	private Timer actTimer;
 	
+	public ManageHeart hearts;
+	public boolean flyingHeart;
+	private int heartDelay = 0;
+	private final int MAX_HEART_DELAY = 30;
+	
 	public static Direction DIR;
+	@SuppressWarnings("unused")
 	private Status STATUS;
+	private Rectangle hitbox;
 	private int actionNum = 0;
 	private int directNum = 0;
 	private int delayNum;
+	public boolean sitting = false;
 	private Random rand = new Random();
-	private PlayerStatus PS;
+	public PlayerStatus PS;
+	
 	public int playerX;
 	public int playerY;
 	private final int OFFSET_Y = GameFrame.SCREEN_SIZE.height / 18;
+	
 }
