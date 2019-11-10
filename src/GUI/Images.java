@@ -13,10 +13,12 @@ public class Images {
 		Player = new BufferedImage[PLAYER_STATES * PLAYER_FACING_DIRECTION][PLAYER_MAX_FRAMES];
 		Cursor = new Image[CURSOR_MAX_FRAMES];
 		Heart = new BufferedImage[HEART_MAX_FRAMES];
+		Buttons = new Image[BUTTON_TYPES][BUTTON_STATES];
 		try {
 			loadPlayer();
 			loadCursor();
 			loadHeart();
+			loadUI();
 		} catch(IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -81,11 +83,25 @@ public class Images {
 		}
 	}
 	
+	private void loadUI() throws IOException{
+		for(int j=0; j<BUTTON_TYPES; j++) {
+			for(int i=0; i<BUTTON_STATES; i++) {
+				System.out.println(j + "; " + i + "; " + (2*j + i));
+				Buttons[j][i] = ImageIO.read(new FileInputStream("src\\Sprites\\Images\\UI\\UI_Button" + (2*j + i) + ".png" ));
+
+			}
+		}
+		
+		UI = ImageIO.read(new FileInputStream("src\\Sprites\\Images\\UI\\UI_Background.png"));
+	}
+	
 	private final int PLAYER_STATES = 3;
 	private final int PLAYER_FACING_DIRECTION = 2;
 	public static final int PLAYER_MOVE_FRAMES = 6;
 	public static final int PLAYER_IDLE_FRAMES = 12;
 	public static final int PLAYER_SIT_FRAMES = 12;
+	public static final int BUTTON_TYPES = 4;
+	public static final int BUTTON_STATES = 2;
 	
 	private final int PLAYER_MAX_FRAMES = 12;
 	private final int CURSOR_MAX_FRAMES = 5;
@@ -94,6 +110,8 @@ public class Images {
 	public static final int PLAYER_WIDTH = 134;
 	public static final int PLAYER_HEIGHT = 134;
 	public static Image[] Cursor;
+	public static Image[][] Buttons;
+	public static Image UI;
 	public static BufferedImage[] Heart;
 	public static BufferedImage[][] Player;// 0~1 Idle_left and Idle_right
 }

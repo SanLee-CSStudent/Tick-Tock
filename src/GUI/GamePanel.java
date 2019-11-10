@@ -3,7 +3,6 @@ package GUI;
 import java.awt.*;
 
 import javax.swing.JPanel;
-
 import GameObject.Player;
 
 public class GamePanel extends JPanel {
@@ -15,6 +14,9 @@ public class GamePanel extends JPanel {
 
 	public GamePanel() {
 		// TODO Auto-generated constructor stub
+		this.setLayout(null);
+		gamepanel = this;
+		
 		player = new Player();// only one player object should exist
 		this.add(player);
 		
@@ -24,8 +26,6 @@ public class GamePanel extends JPanel {
 		
 		this.setPreferredSize(GameFrame.SCREEN_SIZE);
 		
-		this.setLayout(null);
-
 		this.setDoubleBuffered(true);
 		this.setOpaque(false);
 		
@@ -38,6 +38,7 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		g2.drawImage(player.getFrame(), player.playerX, player.playerY, null);
+		g2.drawRect(player.hitbox.x, player.hitbox.y, player.hitbox.width, player.hitbox.height);
 		
 		if(player.hearts.Hearts.size() > 0) {
 			for(int h=0; h<player.hearts.Hearts.size(); h++) {
@@ -55,5 +56,6 @@ public class GamePanel extends JPanel {
 	}
 	
 	public static Player player;
+	public static GamePanel gamepanel;
 	public static UserInterface UI;
 }

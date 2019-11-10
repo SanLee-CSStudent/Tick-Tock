@@ -32,7 +32,7 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 		actTimer = new Timer();
 		hearts = new ManageHeart();
 		delayNum = 1000;
-		hitbox = new Rectangle(Images.PLAYER_WIDTH, Images.PLAYER_HEIGHT, playerX, playerY);
+		hitbox = new Rectangle(playerX, playerY, Images.PLAYER_WIDTH, Images.PLAYER_HEIGHT);
 		
 		this.setLocation(new Point(playerX, playerY));
 		this.setSize(new Dimension(Images.PLAYER_WIDTH, Images.PLAYER_HEIGHT));
@@ -140,7 +140,6 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 				heartDelay = 0;
 			}
 			public void mouseClicked(MouseEvent l) {
-				//System.out.println(e.getX());
 				if(!sitting) {
 					PS = new SIT();// TICTOC is sitting
 					sitting = true;
@@ -156,6 +155,7 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 		});
 		this.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent l) {
+
 				if(hearts.Hearts.size() < 8) {
 					heartDelay++;
 					if(heartDelay > MAX_HEART_DELAY) {
@@ -164,6 +164,7 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 						heartDelay = 0;
 					}
 				}
+				
 			}
 		});
 	}
@@ -183,7 +184,7 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 	public static Direction DIR;
 	@SuppressWarnings("unused")
 	private Status STATUS;
-	private Rectangle hitbox;
+	public Rectangle hitbox;
 	private int actionNum = 0;
 	private int directNum = 0;
 	private int delayNum;

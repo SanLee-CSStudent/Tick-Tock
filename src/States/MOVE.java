@@ -1,5 +1,6 @@
 package States;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import GUI.GameFrame;
@@ -39,6 +40,7 @@ public class MOVE extends PlayerStatus{
 			}
 		}
 		
+		GamePanel.player.hitbox.setLocation(new Point(GamePanel.player.playerX, GamePanel.player.playerY));
 		FrameCounter++;
 	}
 	
