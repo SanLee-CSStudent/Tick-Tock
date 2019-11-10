@@ -85,7 +85,7 @@ public class Food extends JComponent implements AnimatedObject, MouseResponse {
 				if(hitbox.contains(GamePanel.player.hitbox)) {
 					System.out.println("Food and Player Collided");
 					FeedButton.feed.foodHover = false;
-					FeedButton.feed.foods.remove(this);
+					FeedButton.feed.foods.remove(fd);
 				}
 			}
 		});

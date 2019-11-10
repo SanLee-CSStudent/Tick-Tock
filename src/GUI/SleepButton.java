@@ -24,7 +24,17 @@ public class SleepButton extends BaseButton implements MouseResponse {
 	public void addMouseResponse() {
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent l) {
-				
+				if(checkSleeping) {
+					GamePanel.player.sleeping = true;
+					GamePanel.player.sleep();
+					checkSleeping = false;
+				}
+				else {
+					GamePanel.player.sleeping = false;
+					GamePanel.player.sleep();
+					checkSleeping = true;
+
+				}
 			}
 			
 			public void mouseReleased(MouseEvent l) {
@@ -32,5 +42,6 @@ public class SleepButton extends BaseButton implements MouseResponse {
 			}
 		});
 	}
-
+	
+	private boolean checkSleeping = true;
 }

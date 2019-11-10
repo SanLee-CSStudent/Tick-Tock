@@ -70,6 +70,38 @@ public class Images {
 				Player[5][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//SitImage_Tictoc//sit_R" + i +".png"));
 			}
 		}
+		
+		for(int i=0; i<PLAYER_SLEEP_FRAMES; i++) {
+			if(i < 10) {
+				Player[6][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//SleepImage_Tictoc//sleep_L0" + i +".png"));
+			}
+
+		}
+		
+		for(int i=0; i<PLAYER_SLEEP_FRAMES; i++) {
+			if(i < 10) {
+				Player[7][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//SleepImage_Tictoc//sleep_R0" + i +".png"));
+			}
+
+		}
+		
+		for(int i=0; i<PLAYER_SLEEPING_FRAMES; i++) {
+			if(i < 10) {
+				Player[8][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//SleepImage_Tictoc//sleeping_L0" + i +".png"));
+			}
+			else {
+				Player[8][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//SleepImage_Tictoc//sleeping_L" + i +".png"));
+			}
+		}
+		
+		for(int i=0; i<PLAYER_SLEEPING_FRAMES; i++) {
+			if(i < 10) {
+				Player[9][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//SleepImage_Tictoc//sleeping_R0" + i +".png"));
+			}
+			else {
+				Player[9][i] = ImageIO.read(new FileInputStream("src//Sprites//Images//SleepImage_Tictoc//sleeping_R" + i +".png"));
+			}
+		}
 	}
 	
 	private void loadCursor() throws IOException {
@@ -100,11 +132,13 @@ public class Images {
 		UI = ImageIO.read(new FileInputStream("src\\Sprites\\Images\\UI\\UI_Background.png"));
 	}
 	
-	private final int PLAYER_STATES = 3;
+	private final int PLAYER_STATES = 5;
 	private final int PLAYER_FACING_DIRECTION = 2;
 	public static final int PLAYER_MOVE_FRAMES = 6;
 	public static final int PLAYER_IDLE_FRAMES = 12;
 	public static final int PLAYER_SIT_FRAMES = 12;
+	public static final int PLAYER_SLEEP_FRAMES = 5;
+	public static final int PLAYER_SLEEPING_FRAMES = 12;
 	public static final int BUTTON_TYPES = 4;
 	public static final int BUTTON_STATES = 2;
 	public static final int FOOD_MAX_FRAMES = 8;

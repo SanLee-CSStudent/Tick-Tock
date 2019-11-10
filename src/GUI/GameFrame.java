@@ -40,7 +40,7 @@ public class GameFrame extends JFrame{
 		this.setAlwaysOnTop(true);
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
-
+		this.setIconImage(Images.Player[0][0]);
 	}
 	
 	GamePanel gamePanel;

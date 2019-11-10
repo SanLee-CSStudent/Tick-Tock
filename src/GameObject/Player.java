@@ -60,6 +60,16 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 		PS.act();
 	}
 	
+	public void sleep() {
+		if(sleeping) {
+			PS = new SLEEP();
+			pause(actTimer);
+		}
+		else {
+			resumeAct();
+		}
+	}
+	
 	private void resumeAct() {
 		actTimer = new Timer();
 		actTimer.schedule(new TimerTask() {
@@ -164,8 +174,6 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 						heartDelay = 0;
 					}
 				}
-				
-				
 			}
 		});
 	}
@@ -178,6 +186,7 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 	
 	public ManageHeart hearts;
 	public boolean flyingHeart;
+	public boolean sleeping = false;
 	private int heartDelay = 0;
 	private final int MAX_HEART_DELAY = 30;
 	
