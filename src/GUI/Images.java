@@ -13,11 +13,12 @@ public class Images {
 		Player = new BufferedImage[PLAYER_STATES * PLAYER_FACING_DIRECTION][PLAYER_MAX_FRAMES];
 		Cursor = new Image[CURSOR_MAX_FRAMES];
 		Heart = new BufferedImage[HEART_MAX_FRAMES];
+		Food = new BufferedImage[FOOD_MAX_FRAMES];
 		Buttons = new Image[BUTTON_TYPES][BUTTON_STATES];
 		try {
 			loadPlayer();
 			loadCursor();
-			loadHeart();
+			loadObjects();
 			loadUI();
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -77,16 +78,20 @@ public class Images {
 		}
 	}
 	
-	private void loadHeart() throws IOException {
+	private void loadObjects() throws IOException {
 		for(int i=0; i<HEART_MAX_FRAMES; i++) {
 			Heart[i] = ImageIO.read(new FileInputStream("src\\Sprites\\Icons\\Heart\\heart" + (i+1) + ".png"));
+		}
+		
+		for(int i=0; i<FOOD_MAX_FRAMES; i++) {
+			Food[i] = ImageIO.read(new FileInputStream("src\\Sprites\\Icons\\Food\\Food" + (i+1) + ".png"));
 		}
 	}
 	
 	private void loadUI() throws IOException{
 		for(int j=0; j<BUTTON_TYPES; j++) {
 			for(int i=0; i<BUTTON_STATES; i++) {
-				System.out.println(j + "; " + i + "; " + (2*j + i));
+				// System.out.println(j + "; " + i + "; " + (2*j + i));
 				Buttons[j][i] = ImageIO.read(new FileInputStream("src\\Sprites\\Images\\UI\\UI_Button" + (2*j + i) + ".png" ));
 
 			}
@@ -102,6 +107,7 @@ public class Images {
 	public static final int PLAYER_SIT_FRAMES = 12;
 	public static final int BUTTON_TYPES = 4;
 	public static final int BUTTON_STATES = 2;
+	public static final int FOOD_MAX_FRAMES = 8;
 	
 	private final int PLAYER_MAX_FRAMES = 12;
 	private final int CURSOR_MAX_FRAMES = 5;
@@ -113,5 +119,6 @@ public class Images {
 	public static Image[][] Buttons;
 	public static Image UI;
 	public static BufferedImage[] Heart;
+	public static BufferedImage[] Food;
 	public static BufferedImage[][] Player;// 0~1 Idle_left and Idle_right
 }

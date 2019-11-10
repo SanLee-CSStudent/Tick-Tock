@@ -40,8 +40,9 @@ public class MOVE extends PlayerStatus{
 			}
 		}
 		
-		GamePanel.player.hitbox.setLocation(new Point(GamePanel.player.playerX, GamePanel.player.playerY));
 		FrameCounter++;
+		GamePanel.player.setLocation(new Point(GamePanel.player.playerX, GamePanel.player.playerY));
+		GamePanel.player.hitbox.setLocation(new Point(GamePanel.player.playerX, GamePanel.player.playerY));
 	}
 	
 	public BufferedImage getCurrentFrame() {

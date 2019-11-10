@@ -17,6 +17,7 @@ import Interface.MouseResponse;
 import States.*;
 import GUI.GameFrame;
 import GUI.Images;
+import GUI.ManageFood;
 import GUI.ManageHeart;
 
 public class Player extends JComponent implements AnimatedObject, MouseResponse{
@@ -155,7 +156,6 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 		});
 		this.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent l) {
-
 				if(hearts.Hearts.size() < 8) {
 					heartDelay++;
 					if(heartDelay > MAX_HEART_DELAY) {
@@ -165,6 +165,7 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 					}
 				}
 				
+				
 			}
 		});
 	}
@@ -172,7 +173,6 @@ public class Player extends JComponent implements AnimatedObject, MouseResponse{
 	private BufferedImage frame;
 	public static int currentFrameNumber;
 	private int idleFrameCache = 0;
-	private final int FPS = 6;
 	
 	private Timer actTimer;
 	

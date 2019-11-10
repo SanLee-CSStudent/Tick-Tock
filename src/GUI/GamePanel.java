@@ -3,6 +3,7 @@ package GUI;
 import java.awt.*;
 
 import javax.swing.JPanel;
+
 import GameObject.Player;
 
 public class GamePanel extends JPanel {
@@ -21,7 +22,9 @@ public class GamePanel extends JPanel {
 		this.add(player);
 		
 		UI = new UserInterface();
+		UI.setLocation(new Point(UI.UIx, UI.UIy));
 		this.add(UI);
+		
 		setBackground(new Color(255, 255, 255, 0));
 		
 		this.setPreferredSize(GameFrame.SCREEN_SIZE);
@@ -38,7 +41,7 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		g2.drawImage(player.getFrame(), player.playerX, player.playerY, null);
-		g2.drawRect(player.hitbox.x, player.hitbox.y, player.hitbox.width, player.hitbox.height);
+		// g2.drawRect(player.hitbox.x, player.hitbox.y, player.hitbox.width, player.hitbox.height);
 		
 		if(player.hearts.Hearts.size() > 0) {
 			for(int h=0; h<player.hearts.Hearts.size(); h++) {
@@ -53,9 +56,15 @@ public class GamePanel extends JPanel {
 				}
 			}
 		}
+		
+		if(FeedButton.feed.foodHover) {
+			// g2.drawRect(FeedButton.feed.foods.get(0).hitbox.x, FeedButton.feed.foods.get(0).hitbox.y, FeedButton.feed.foods.get(0).hitbox.width, FeedButton.feed.foods.get(0).hitbox.height);
+			g2.drawImage(FeedButton.feed.foods.get(0).getFrame(), FeedButton.feed.foods.get(0).foodX, FeedButton.feed.foods.get(0).foodY, null);
+		}
 	}
 	
 	public static Player player;
 	public static GamePanel gamepanel;
 	public static UserInterface UI;
+
 }

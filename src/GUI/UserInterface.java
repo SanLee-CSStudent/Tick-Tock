@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -25,6 +24,9 @@ public class UserInterface extends JPanel implements MouseResponse {
 
 	public UserInterface() {
 		// TODO Auto-generated constructor stub
+		UIx = GameFrame.SCREEN_SIZE.width - UI_WIDTH - UI_offset;
+		UIy = UI_offset;
+		
 		this.setSize(new Dimension(UI_WIDTH, UI_HEIGHT));
 		this.setLocation(new Point(UIx, UIy));
 		this.setBounds(new Rectangle(UI_WIDTH, UI_HEIGHT));
@@ -69,6 +71,11 @@ public class UserInterface extends JPanel implements MouseResponse {
 			public void mouseReleased(MouseEvent e) {
 				GameFrame.cursor.setCursor0(UI);
 			}
+			
+			public void mouseExited(MouseEvent l) {
+				
+			}
+	
 		});
 		this.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
@@ -78,8 +85,8 @@ public class UserInterface extends JPanel implements MouseResponse {
 		});
 	}
 	
-	private int UIx = GameFrame.SCREEN_SIZE.width - UI_WIDTH - UI_offset;
-	private int UIy = UI_offset;
+	public int UIx;
+	public int UIy;
 	
 	public static final int UI_WIDTH = 240;// ((int)GameFrame.WIDTH) / 8;// 240
 	public static final int UI_HEIGHT = 180;// ((int)GameFrame.HEIGHT) / 6;// 180

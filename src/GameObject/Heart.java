@@ -106,5 +106,4 @@ public class Heart implements AnimatedObject{
 	public boolean reachLastFrame = false;
 	public static int currentFrameNumber;
 	private int heartCounter;
-	private final int FPS = 6;
 }
