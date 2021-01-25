@@ -1,0 +1,21 @@
+Minimum: 9.0%; when pet--> +1.5%
+Maximum: 11.0%; when pet--> +0.5%
+=========Timer&TimerTask -> ScheduledExecutorservice=========
+Minimum: 8.5%; when pet--> +1.5%
+Maximum: 10.5%; when pet--> +0.5%
+
+
+
+
+
+
+
+
+
+
+
+
+Turn off UI -= 1%
+
+GameInterface -----------------------> Thread
+scheduleDelay -----------------------> ScheduledExecutorService

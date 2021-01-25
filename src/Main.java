@@ -2,7 +2,6 @@ import javax.swing.SwingUtilities;
 
 import GUI.*;
 
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -12,6 +11,7 @@ public class Main {
 			public void run() {
 				@SuppressWarnings("unused")
 				GameFrame gameFrame = new GameFrame();
+				
 				
 			}
 		});
